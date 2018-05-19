@@ -7,6 +7,7 @@
 package br.ufs.dcomp.function;
 
 import br.ufs.dcomp.algorithim.SimulatedAnnealing;
+import br.ufs.dcomp.algorithim.Tweak;
 
 /**
  * @version 
@@ -15,8 +16,8 @@ import br.ufs.dcomp.algorithim.SimulatedAnnealing;
  */
 public class SphereSimulatedAnnealing extends SimulatedAnnealing{
 
-    public SphereSimulatedAnnealing(int lengthVector, int min, int max, int temperature) {
-        super(lengthVector, min, max, temperature);
+    public SphereSimulatedAnnealing(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, int temperature) {
+        super(lengthVector, minValueArray, maxValueArray, tweak, temperature);
     }
 
     @Override

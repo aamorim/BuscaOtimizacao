@@ -6,9 +6,11 @@
 package br.ufs.dcomp.algorithim;
 
 
-/*
-*
-*/
+/**
+ * @version 1.0 
+ * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
+ * @date   07/05/2018 21:24:15
+ */
 public abstract class HillClimbing extends Generic{
 
     /**
@@ -21,8 +23,10 @@ public abstract class HillClimbing extends Generic{
     }  
     
     /**
+     * @param interaction número de interações do algoritimo
      * @return
-     */    
+     */
+    @Override
     public double[] exe(int interaction){
         int cont = 0;
         double[] S = initSolution();
@@ -35,7 +39,7 @@ public abstract class HillClimbing extends Generic{
             }
             System.out.println("Qualy: " + quality(S) + " Count: " + cont);
             cont ++;
-        } while (cont < interaction );
+        } while (cont < interaction || quality(S) == 0);
         
         return S;
     }

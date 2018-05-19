@@ -56,6 +56,24 @@ public abstract class Generic {
         return aleatorio;
     }
     
+    /*
+    * Gera valores aleatorios baseado em valores minimos e máximos
+    * definidos nos parametros
+    * @minValue valor mínimo
+    * @maxValue valor máximo
+    */
+    public double random(int minValue, int maxValue) {
+        double aleatorio = 0;
+        double inicial = Math.random(); // Gera valores aleatorios entre 0 e 1
+        
+        if (inicial < 0.5 && minValue < 0) {
+            aleatorio = Math.random() * maxValue * -1;
+        } else {
+            aleatorio = Math.random() * maxValue * 1;
+        }
+        return aleatorio;
+    }
+    
     
     /*
     * Implementação do Algorithm 8 Bounded Uniform Convolution
@@ -69,13 +87,10 @@ public abstract class Generic {
         for (int i = 0; i < vector.length; i++) {
             if (tweak.getP() >= Math.random()) {
                 do {
-                    n = random();
+                    n = random(-1,1);
                 } while (((vector[i] + n) < tweak.getMinRange()) || ((vector[i] + n) > tweak.getMaxRange()));
                 
-                if((vector[i] + n > vector[i] && vector[i] + n < 0) || 
-                      vector[i] + n < vector[i] && vector[i] + n > 0 ){
-                    vector[i] = (vector[i] + n);
-                }                        
+                vector[i] = (vector[i] + n);                     
             }
 
         }

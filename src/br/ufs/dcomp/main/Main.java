@@ -31,7 +31,8 @@ public class Main {
     
     public static void main(String[] args) {
        Scanner in = new Scanner(System.in);
-       int num_int = 1000000000;
+       Tweak tweak;
+       int interaction = 100000;
        int algoritimo;
        System.out.println("Escolha o algoritimo:");
        System.out.println("1 - Hill-Climbing");
@@ -42,12 +43,13 @@ public class Main {
        
        switch(algoritimo){
            case 1:
-               Tweak tweak = new Tweak(1, -100, 100);
+               tweak = new Tweak(0.01, -100, 100);
                SphereHillClimbing alg1 = new SphereHillClimbing(100, -100, 100, tweak);
-               alg1.exe(100000);
+               alg1.exe(interaction);
            case 2:
-             //  SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100,-100,100,40);
-             //  alg2.exe(100);
+               tweak = new Tweak(0.01, -100, 100);
+               SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100,-100,100,tweak, 100);
+               alg2.exe(interaction);
           case 3:
              //  SphereTabu alg3 = new SphereTabu(100, -100, 100, 100, 30);
              //  alg3.exe(100);
