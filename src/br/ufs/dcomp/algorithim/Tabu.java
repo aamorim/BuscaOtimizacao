@@ -6,61 +6,62 @@
 
 package br.ufs.dcomp.algorithim;
 
-import java.util.Arrays;
-
 /**
- * @version
+ * @version 1.0
  * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
  * @date   07/05/2018 21:23:47
  */
 public abstract class Tabu extends Generic{
 
-    private int l; //Comprimento máximo da lista tabu desejado
-    private int n; //número de ajustes desejados para amostrar o gradiente
-    private int cont; //controle das posições da lista tabu
+    private int l;                        //Comprimento máximo da lista tabu desejado
+    private int n;                        //número de ajustes desejados para amostrar o gradiente
+    private int controlLengthTabuList;   //controle das posições da lista tabu
 
     //Constutor da classe
-    public Tabu(int lengthVector, int min, int max, int tabuListLength, int nTweaks) {
-        super(lengthVector, min, max);
+    public Tabu(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, int tabuListLength, int nTweaks) {
+        super(lengthVector, minValueArray, maxValueArray, tweak);
         this.l = tabuListLength;
         this.n = nTweaks;
-        this.cont = 0;
+        this.controlLengthTabuList = 0;
     }
 
     @Override
-    public double[] exe(int num_int) {
-        
+    public double[] exe(int interaction) {
+        int cont = 0;
         double[] S = initSolution(); //alguma solução candidata inicial
-        double[] Best = S;
+        double[] Best = S;           //Melhor solução
         double[] R;
         double[] W;
         double[][] L = new double[l][1]; //uma lista tabu de tamanho máximo l
         
         //Enfileirar S em L
         push(S, L);
-
-        for (int i = 0; i < num_int; i++) {
-            if(this.cont+1 > l){
+        
+        do {
+            
+            if (this.controlLengthTabuList + 1 > l) {
                 pull(L);
             }
             R = tweak(S.clone());
-            
+
             //número de ajustes desejados para amostrar o gradiente
-            for (int j = 0; j < n ; j++) {
-               W = tweak(S.clone());
-               if(!belongsTo(W, L) && (quality(W) > quality(R) || belongsTo(R, L))){                  
-                   R = W;
-               }               
+            for (int j = 0; j < n; j++) {
+                W = tweak(S.clone());
+                if (!belongsTo(W, L) && (quality(W) < quality(R) || belongsTo(R, L))) {
+                    R = W;
+                }
             }
-            if(!belongsTo(R, L)){
+            if (!belongsTo(R, L)) {
                 S = R;
                 push(R, L);
             }
-            if(quality(S) > quality(Best)){
+            if (quality(S) < quality(Best)) {
                 Best = S;
             }
-          //  System.out.println(quality(Best));
-        }
+            cont ++;
+            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
+        } while (cont < interaction || quality(Best) == 0);
+
        // System.out.println(Arrays.toString(L[L.length-1]));
         //System.out.println(Arrays.toString(Best));
         return Best;
@@ -99,11 +100,11 @@ public abstract class Tabu extends Generic{
 
     //incrementar
     private int incrementLengthQueue(){
-        return cont++;
+        return controlLengthTabuList++;
     }
 
      private int decreasetLengthQueue(){
-        return cont--;
+        return controlLengthTabuList--;
     }
     
 }

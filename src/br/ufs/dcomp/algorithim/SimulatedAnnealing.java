@@ -45,8 +45,8 @@ public abstract class SimulatedAnnealing extends Generic{
                 Best = S;
             }
             
-            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
             cont ++;
+            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
         } while (cont < interaction || quality(S) == 0);
 
         return Best;

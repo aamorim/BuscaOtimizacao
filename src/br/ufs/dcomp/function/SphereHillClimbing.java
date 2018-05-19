@@ -20,6 +20,7 @@ public class SphereHillClimbing extends HillClimbing{
         super(lengthVector, minValueArray, maxValueArray, tweak);
     }
 
+    @Override
     public double quality(double[] a) {
         double funcao = 0.0;
         for (int i = 0; i < a.length; i++) {

@@ -35,10 +35,10 @@ public class Main {
        int interaction = 100000;
        int algoritimo;
        System.out.println("Escolha o algoritimo:");
-       System.out.println("1 - Hill-Climbing");
-       System.out.println("2 - Simulated Annealing");
-       System.out.println("3 - Tabu");
-       System.out.println("4 - ILS");
+       System.out.println("1 - Hill-Climbing       [Sphere]");
+       System.out.println("2 - Simulated Annealing [Sphere]");
+       System.out.println("3 - Tabu                [Sphere]");
+       System.out.println("4 - ILS                 [Sphere]");
        algoritimo = in.nextInt();
        
        switch(algoritimo){
@@ -51,8 +51,9 @@ public class Main {
                SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100,-100,100,tweak, 100);
                alg2.exe(interaction);
           case 3:
-             //  SphereTabu alg3 = new SphereTabu(100, -100, 100, 100, 30);
-             //  alg3.exe(100);
+               tweak = new Tweak(0.01, -100, 100);
+               SphereTabu alg3 = new SphereTabu(100, -100, 100,tweak, 100, 30);
+               alg3.exe(interaction);
           case 4:
              //  SphereILS alg4 = new SphereILS(100, -100, 100, 15);
             //   alg4.exe(100);

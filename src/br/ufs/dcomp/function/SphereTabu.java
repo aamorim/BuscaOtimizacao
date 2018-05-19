@@ -7,6 +7,7 @@
 package br.ufs.dcomp.function;
 
 import br.ufs.dcomp.algorithim.Tabu;
+import br.ufs.dcomp.algorithim.Tweak;
 
 /**
  * @version 
@@ -15,10 +16,11 @@ import br.ufs.dcomp.algorithim.Tabu;
  */
 public class SphereTabu extends Tabu{
 
-    public SphereTabu(int lengthVector, int min, int max, int tabuListLength, int nTweaks) {
-        super(lengthVector, min, max, tabuListLength, nTweaks);
+    public SphereTabu(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, int tabuListLength, int nTweaks) {
+        super(lengthVector, minValueArray, maxValueArray, tweak, tabuListLength, nTweaks);
     }
 
+    @Override
     public double quality(double[] a) {
         double funcao = 0.0;
         for (int i = 0; i < a.length; i++) {

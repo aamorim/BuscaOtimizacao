@@ -37,8 +37,8 @@ public abstract class HillClimbing extends Generic{
             if (quality(R) < quality(S)) {
                 S = R;                
             }
-            System.out.println("Qualy: " + quality(S) + " Count: " + cont);
             cont ++;
+            System.out.println("Qualy: " + quality(S) + " Count: " + cont);
         } while (cont < interaction || quality(S) == 0);
         
         return S;
