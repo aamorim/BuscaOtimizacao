@@ -7,6 +7,7 @@
 package br.ufs.dcomp.function;
 
 import br.ufs.dcomp.algorithim.ILS;
+import br.ufs.dcomp.algorithim.Tweak;
 
 /**
  * @version 
@@ -15,8 +16,8 @@ import br.ufs.dcomp.algorithim.ILS;
  */
 public class SphereILS extends ILS{
 
-    public SphereILS(int lengthVector, int min, int max, int nTweaks) {
-        super(lengthVector, min, max, nTweaks);
+    public SphereILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
+        super(lengthVector, minValueArray, maxValueArray, tweak);
     }   
     
     @Override

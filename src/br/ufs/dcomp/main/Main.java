@@ -7,6 +7,7 @@ package br.ufs.dcomp.main;
 
 import br.ufs.dcomp.algorithim.HillClimbing;
 import br.ufs.dcomp.algorithim.Tweak;
+import br.ufs.dcomp.function.SchwefelHillClimbing;
 import br.ufs.dcomp.function.SphereHillClimbing;
 import br.ufs.dcomp.function.SphereILS;
 import br.ufs.dcomp.function.SphereSimulatedAnnealing;
@@ -32,13 +33,14 @@ public class Main {
     public static void main(String[] args) {
        Scanner in = new Scanner(System.in);
        Tweak tweak;
-       int interaction = 100000;
+       int interaction = 10000000;
        int algoritimo;
        System.out.println("Escolha o algoritimo:");
        System.out.println("1 - Hill-Climbing       [Sphere]");
        System.out.println("2 - Simulated Annealing [Sphere]");
        System.out.println("3 - Tabu                [Sphere]");
        System.out.println("4 - ILS                 [Sphere]");
+       System.out.println("5 - Hill-Climbing       [Schwefel]");
        algoritimo = in.nextInt();
        
        switch(algoritimo){
@@ -55,8 +57,13 @@ public class Main {
                SphereTabu alg3 = new SphereTabu(100, -100, 100,tweak, 100, 30);
                alg3.exe(interaction);
           case 4:
-             //  SphereILS alg4 = new SphereILS(100, -100, 100, 15);
-            //   alg4.exe(100);
+               tweak = new Tweak(0.01, -100, 100);
+               SphereILS alg4 = new SphereILS(100, -100, 100, tweak);
+               alg4.exe(interaction);
+          case 5:
+              tweak = new Tweak(0.01, -100, 100);
+              SchwefelHillClimbing alg5 = new SchwefelHillClimbing(100, -100, 100, tweak);
+              alg5.exe(interaction);
        }
        
        
