@@ -14,53 +14,62 @@ package br.ufs.dcomp.algorithim;
 public abstract class ILS extends Generic{
 
     private int n;
+    private Tweak tweak;
     
     
-    public ILS(int lengthVector, int min, int max,int nTweaks) {
-        super(lengthVector, min, max);
-        this.n = nTweaks;
+    public ILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
+        super(lengthVector, minValueArray, maxValueArray, tweak);
+        this.tweak = tweak;
     }
 
   
-    public double[] exe(int num_int) {
-        
-        int[] T = timeIntervals(num_int); //distribuição de possíveis intervalos de tempo
+    @Override
+    public double[] exe(int interaction) {
+        int cont = 0;  
+        int contTime = 0;
         double[] S = initSolution(); //alguma solução candidata inicial 
         double[] H = S;
         double[] Best = S;
         double[] R;
-        double a = Math.random()*num_int;
-        int times = T[(int)a]; //tempo aleatório no futuro próximo, escolhido de T
+        
        
-        for (int i = 0; i < times; i++) {
-            for (int j = 0; j < n; j++) {
+        do {            
+             int times = (int) (Math.random() * S.length); //tempo aleatório no futuro próximo, escolhido de T
+             
+            do {                
                 R = tweak(S.clone());
-                if (quality(R) > quality(S)) {
+                if (quality(R) < quality(S)) {
                     S = R;
                 }
-            }
-            if(quality(S) > quality(Best)){
+                contTime ++;
+            } while (contTime < times);
+            
+            contTime = 0;
+            
+            if(quality(S) < quality(Best)){
                 Best = S;
             }
+            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
             H = newHomeBase(H, S);
-            S = perturb(H);
+            S = perturb(H.clone(), tweak.getP());
             
-           // System.out.println(quality(Best));
-        }
-        // System.out.println(quality(Best));
+            cont ++;
+            
+        } while (cont < interaction);
+       
         return Best;
     }
     
     
-    public double[] perturb(double[] vetor) {
+    public double[] perturb(double[] vetor, double p) {
         double n;
 
         for (int i = 0; i < vetor.length; i++) {
-            if (0.7 >= Math.random()) {
+            if (p >= Math.random()) {
                 do {
                     n = random();
 
-                } while ((vetor[i] + n < minValueArray) || (vetor[i] + n > maxValueArray));
+                } while ((vetor[i] + n < tweak.getMinRange()) || (vetor[i] + n > tweak.getMaxRange()));
                 vetor[i] = vetor[i] + n;
             }
 
@@ -76,15 +85,7 @@ public abstract class ILS extends Generic{
         }
     }
     
-    private int[] timeIntervals(int length){
-        int[] T = new int[length];
-        
-        for (int i = 0; i < T.length; i++) {
-            T[i] = (int) Math.random() * 100;
-            
-        }
-        return T;
-    }
+
 
     
 
