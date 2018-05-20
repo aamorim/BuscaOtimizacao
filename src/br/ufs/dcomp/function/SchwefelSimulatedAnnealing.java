@@ -6,19 +6,21 @@
 
 package br.ufs.dcomp.function;
 
-import br.ufs.dcomp.algorithim.HillClimbing;
+import br.ufs.dcomp.algorithim.SimulatedAnnealing;
 import br.ufs.dcomp.algorithim.Tweak;
 
 /**
  * @version 
  * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
- * @date   19/05/2018 14:26:02
+ * @date   19/05/2018 18:05:08
  */
-public class SchwefelHillClimbing  extends HillClimbing{
+public class SchwefelSimulatedAnnealing extends SimulatedAnnealing{
 
-    public SchwefelHillClimbing(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
-        super(lengthVector, minValueArray, maxValueArray, tweak);
+    public SchwefelSimulatedAnnealing(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, int temperature) {
+        super(lengthVector, minValueArray, maxValueArray, tweak, temperature);
     }
+
+ 
 
     @Override
     public double quality(double[] vector) {
@@ -30,4 +32,5 @@ public class SchwefelHillClimbing  extends HillClimbing{
         }
         return F;
     }
+
 }

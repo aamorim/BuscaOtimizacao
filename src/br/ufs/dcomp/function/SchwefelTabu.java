@@ -6,18 +6,18 @@
 
 package br.ufs.dcomp.function;
 
-import br.ufs.dcomp.algorithim.HillClimbing;
+import br.ufs.dcomp.algorithim.Tabu;
 import br.ufs.dcomp.algorithim.Tweak;
 
 /**
  * @version 
  * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
- * @date   19/05/2018 14:26:02
+ * @date   20/05/2018 12:25:57
  */
-public class SchwefelHillClimbing  extends HillClimbing{
+public class SchwefelTabu extends Tabu{
 
-    public SchwefelHillClimbing(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
-        super(lengthVector, minValueArray, maxValueArray, tweak);
+    public SchwefelTabu(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, int tabuListLength, int nTweaks) {
+        super(lengthVector, minValueArray, maxValueArray, tweak, tabuListLength, nTweaks);
     }
 
     @Override
@@ -26,8 +26,9 @@ public class SchwefelHillClimbing  extends HillClimbing{
         double z;
         for (int i = 1; i < vector.length; i++) {
             z = Math.abs(vector[i]);
-            F = max(F, z);            
+            F = max(F, z);
         }
         return F;
     }
+
 }

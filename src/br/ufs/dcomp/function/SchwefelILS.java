@@ -6,20 +6,25 @@
 
 package br.ufs.dcomp.function;
 
-import br.ufs.dcomp.algorithim.HillClimbing;
+import br.ufs.dcomp.algorithim.ILS;
 import br.ufs.dcomp.algorithim.Tweak;
 
 /**
  * @version 
  * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
- * @date   19/05/2018 14:26:02
+ * @date   19/05/2018 18:01:29
  */
-public class SchwefelHillClimbing  extends HillClimbing{
+public class SchwefelILS extends ILS{
 
-    public SchwefelHillClimbing(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
+    public SchwefelILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
         super(lengthVector, minValueArray, maxValueArray, tweak);
     }
 
+    /**
+     *
+     * @param vector
+     * @return
+     */
     @Override
     public double quality(double[] vector) {
         double F = Math.abs(vector[0]);
@@ -30,4 +35,7 @@ public class SchwefelHillClimbing  extends HillClimbing{
         }
         return F;
     }
+
+    
+
 }

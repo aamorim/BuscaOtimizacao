@@ -96,6 +96,15 @@ public abstract class Generic {
         }
         return vector;
     }
+
+    /**
+     * @param x Valor a ser comparado com Y
+     * @param y Valor a ser comparado com X
+     * @return o maior valor
+     */
+    public double max(double x, double y){
+        return x>=y?x:y;
+    }
     
     public abstract double quality(double[] s);
     
