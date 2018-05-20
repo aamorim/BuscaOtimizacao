@@ -8,6 +8,10 @@ package br.ufs.dcomp.main;
 import br.ufs.dcomp.algorithim.HillClimbing;
 import br.ufs.dcomp.algorithim.Range;
 import br.ufs.dcomp.algorithim.Tweak;
+import br.ufs.dcomp.function.RastriginHillClimbing;
+import br.ufs.dcomp.function.RastriginILS;
+import br.ufs.dcomp.function.RastriginSimulatedAnnealing;
+import br.ufs.dcomp.function.RastriginTabu;
 import br.ufs.dcomp.function.RosenbrockHillClimbing;
 import br.ufs.dcomp.function.RosenbrockILS;
 import br.ufs.dcomp.function.RosenbrockSimulatedAnnealing;
@@ -127,6 +131,26 @@ public class Main {
                 tweak = new Tweak(0.01, -100, 100);
                 RosenbrockILS alg12 = new RosenbrockILS(100, -100, 100, tweak);
                 alg12.exe(interaction);
+                break;
+            case 13:
+                tweak = new Tweak(0.01, -100, 100);
+                RastriginHillClimbing alg13 = new RastriginHillClimbing(100, -100, 100, tweak);
+                alg13.exe(interaction);
+                break;
+            case 14:
+                tweak = new Tweak(0.01, -100, 100);
+                RastriginSimulatedAnnealing alg14 = new RastriginSimulatedAnnealing(100, -100, 100, tweak, 100);
+                alg14.exe(interaction);
+                break;
+            case 15:
+                tweak = new Tweak(0.01, -100, 100);
+                RastriginTabu alg15 = new RastriginTabu(100, -100, 100, tweak, 100, 30);
+                alg15.exe(interaction);
+                break;
+            case 16:
+                tweak = new Tweak(0.01, -100, 100);
+                RastriginILS alg16 = new RastriginILS(100, -100, 100, tweak);
+                alg16.exe(interaction);
                 break;
         }
        
