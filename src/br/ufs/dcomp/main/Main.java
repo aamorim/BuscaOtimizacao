@@ -95,12 +95,12 @@ public class Main {
                 alg5.exe(interaction);
                 break;
             case 6:
-                tweak = new Tweak(0.2,  -4, 4);
-                SchwefelSimulatedAnnealing alg6 = new SchwefelSimulatedAnnealing(100, -100, 100, tweak, 100);
+                tweak = new Tweak(0.1,  -4, 4);
+                SchwefelSimulatedAnnealing alg6 = new SchwefelSimulatedAnnealing(100, -100, 100, tweak, 60);
                 alg6.exe(interaction);
                 break;
             case 7:
-                tweak = new Tweak(0.01, -1, 1);
+                tweak = new Tweak(0.01,  -1, 1);
                 SchwefelTabu alg7 = new SchwefelTabu(100, -100, 100, tweak, 100, 30);
                 alg7.exe(interaction);
                 break;
@@ -110,12 +110,12 @@ public class Main {
                 alg8.exe(interaction);
                 break;
             case 9:
-                tweak = new Tweak(0.01,  -1, 1);
+                tweak = new Tweak(0.5,  0.1, 0.9);
                 RosenbrockHillClimbing alg9 = new RosenbrockHillClimbing(100, -100, 100, tweak);
                 alg9.exe(interaction);
                 break;
             case 10:
-                tweak = new Tweak(0.01,  -1, 1);
+                tweak = new Tweak(0.01,  -0.5, 0.5);
                 RosenbrockSimulatedAnnealing alg10 = new RosenbrockSimulatedAnnealing(100, -100, 100, tweak, 100);
                 alg10.exe(interaction);
                 break;

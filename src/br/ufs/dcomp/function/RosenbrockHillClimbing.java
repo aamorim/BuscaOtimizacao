@@ -25,7 +25,7 @@ public class RosenbrockHillClimbing extends HillClimbing{
         double F = 0.0;
         
         for (int i = 0; i < z.length-1; i++) {
-              F += 100* Math.pow((Math.pow(z[i], 2) - z[i+1]),2)
+              F += 100 * Math.pow((Math.pow(z[i], 2) - z[i+1]),2)
                     + Math.pow((z[i] -1),2);          
         }
         
