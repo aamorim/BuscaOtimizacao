@@ -62,7 +62,7 @@ public abstract class Generic {
     * @minValue valor mínimo
     * @maxValue valor máximo
     */
-    public double random(int minValue, int maxValue) {
+    public double random(double minValue, double maxValue) {
         double aleatorio = 0;
         double inicial = Math.random(); // Gera valores aleatorios entre 0 e 1
         
@@ -87,8 +87,8 @@ public abstract class Generic {
         for (int i = 0; i < vector.length; i++) {
             if (tweak.getP() >= Math.random()) {
                 do {
-                    n = random(-1,1);
-                } while (((vector[i] + n) < tweak.getMinRange()) || ((vector[i] + n) > tweak.getMaxRange()));
+                    n = random(tweak.getMinRange(),tweak.getMaxRange());
+                } while (((vector[i] + n) < this.minValueArray) || ((vector[i] + n) > this.maxValueArray));
                 
                 vector[i] = (vector[i] + n);                     
             }
