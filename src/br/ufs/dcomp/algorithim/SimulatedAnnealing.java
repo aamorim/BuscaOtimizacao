@@ -26,16 +26,18 @@ public abstract class SimulatedAnnealing extends Generic{
         double S[] = initSolution();
         double Best[] = S;
         double decrement = temperature/interaction;
-        double worseSolution = qualityWorseSolution(S.length);
+       // double worseSolution = qualityWorseSolution(S.length);
         
         
         do {            
             double R[] = tweak(S.clone());
-            //System.out.println("qly S: " + quality(S)+ " qly R: " + quality(R) + " rs: " + (quality(S) - quality(R)));
-            double sa = Math.exp((quality(R) - quality(S)) / temperature);
+            System.out.println("qly S: " + quality(S)+ " qly R: " + quality(R) + " t: "+ temperature + " s-r: " + (quality(S) - quality(R)));
+            
+            double calculo = Math.exp((quality(S) - quality(R)) / temperature);
             double randon =  Math.random();  
-            System.out.println("randon: " + randon + " sa: " + sa);
-            if (quality(R) < quality(S) || randon < sa) {
+            
+            System.out.println("randon: " + randon + " sa: " + calculo);
+            if (quality(R) < quality(S) || randon < calculo) {
                 S = R;
             }
             temperature = temperature > 0 ? temperature-decrement : 0;
@@ -56,8 +58,7 @@ public abstract class SimulatedAnnealing extends Generic{
         double[] array = new double[length];
         for (int i = 0; i < length; i++) {
             array[i] = getMaxValueArray();            
-        }
-        
+        }        
         return quality(array);
     }
 

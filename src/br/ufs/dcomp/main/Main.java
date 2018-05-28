@@ -74,8 +74,8 @@ public class Main {
                 break;
             case 2:
                 tweak = new Tweak(0.01,  1);
-                SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100, -100, 100, tweak, 10000);
-                alg2.setPrintQuality(printQuality);
+                SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100, -100, 100, tweak, 50);
+                alg2.setPrintQuality(false);
                 alg2.exe(interaction);
                 break;
             case 3:

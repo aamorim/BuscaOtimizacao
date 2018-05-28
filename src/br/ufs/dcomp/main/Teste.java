@@ -15,7 +15,7 @@ public class Teste {
     
     public static void main(String[] args) {
         Random r = new Random();
-        double a = Math.E;
+        double a = Math.exp(0.0000003193321426);
            System.out.println(a); 
     }
     
