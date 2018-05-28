@@ -35,8 +35,7 @@ public abstract class ILS extends Generic{
         double[] H = S;
         double[] Best = S;
         double[] R;
-        
-       
+            
         do {
             int times = (int) (Math.random() * S.length); //tempo aleatório no futuro próximo, escolhido de T
 
