@@ -6,8 +6,6 @@
 
 package br.ufs.dcomp.algorithim;
 
-import java.util.Arrays;
-
 /**
  * @version 1.0 
  * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
@@ -27,31 +25,40 @@ public abstract class SimulatedAnnealing extends Generic{
         int cont = 0;
         double S[] = initSolution();
         double Best[] = S;
+        double decrement = temperature/interaction;
+        double worseSolution = qualityWorseSolution(S.length);
+        
         
         do {            
             double R[] = tweak(S.clone());
-            //System.out.println("Exponencial: " + Math.pow(Math.E, (quality(S) - quality(R)) / temperature) + " Temperatura: " + temperature);
-           // System.out.println("Quality R: "+ quality(R) +" Quality S: " + quality(S));
-           // System.out.println("----");
-            if (quality(R) < quality(S) 
-                    || Math.random() < Math.pow(Math.E, (quality(S) - quality(R)) / temperature)) {
+            //System.out.println("qly S: " + quality(S)+ " qly R: " + quality(R) + " rs: " + (quality(S) - quality(R)));
+            double sa = Math.exp((quality(R) - quality(S)) / temperature);
+            double randon =  Math.random();  
+            System.out.println("randon: " + randon + " sa: " + sa);
+            if (quality(R) < quality(S) || randon < sa) {
                 S = R;
             }
-            
-            
-            temperature = temperature > 0 ? temperature-0.01 : 0;
+            temperature = temperature > 0 ? temperature-decrement : 0;
             
             if(quality(S) < quality(Best)){
                 Best = S;
             }
             
             cont ++;
-            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
+            printQuality(quality(Best), cont);
         } while (cont < interaction || quality(S) == 0);
 
         return Best;
     }
     
     
+    public double qualityWorseSolution(int length){
+        double[] array = new double[length];
+        for (int i = 0; i < length; i++) {
+            array[i] = getMaxValueArray();            
+        }
+        
+        return quality(array);
+    }
 
 }

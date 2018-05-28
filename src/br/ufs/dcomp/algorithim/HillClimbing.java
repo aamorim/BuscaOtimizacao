@@ -35,10 +35,10 @@ public abstract class HillClimbing extends Generic{
         do {  
             R = tweak(S.clone());
             if (quality(R) < quality(S)) {
-                S = R;                
+                S = R;                    
             }
             cont ++;
-            System.out.println("Qualy: " + quality(S) + " Count: " + cont);
+            printQuality(quality(S), cont);
         } while (cont < interaction || quality(S) == 0);
         
         return S;

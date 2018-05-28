@@ -16,8 +16,8 @@ import br.ufs.dcomp.algorithim.Tweak;
  */
 public class RosenbrockILS extends  ILS{
 
-    public RosenbrockILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
-        super(lengthVector, minValueArray, maxValueArray, tweak);
+    public RosenbrockILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, double pertube, double range) {
+        super(lengthVector, minValueArray, maxValueArray, tweak, pertube, range);
     }
 
     @Override

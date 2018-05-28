@@ -15,11 +15,15 @@ public abstract class ILS extends Generic{
 
     private int n;
     private Tweak tweak;
+    private double pertube;
+    private double range;
     
     
-    public ILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
+    public ILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, double pertube, double range) {
         super(lengthVector, minValueArray, maxValueArray, tweak);
         this.tweak = tweak;
+        this.pertube = pertube;
+        this.range = range;
     }
 
   
@@ -33,28 +37,28 @@ public abstract class ILS extends Generic{
         double[] R;
         
        
-        do {            
-             int times = (int) (Math.random() * S.length); //tempo aleatório no futuro próximo, escolhido de T
-             
-            do {                
+        do {
+            int times = (int) (Math.random() * S.length); //tempo aleatório no futuro próximo, escolhido de T
+
+            do {
                 R = tweak(S.clone());
                 if (quality(R) < quality(S)) {
                     S = R;
                 }
-                contTime ++;
+                contTime++;
             } while (contTime < times);
-            
+
             contTime = 0;
-            
-            if(quality(S) < quality(Best)){
+
+            if (quality(S) < quality(Best)) {
                 Best = S;
             }
-            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
             H = newHomeBase(H, S);
-            S = perturb(H.clone(), tweak.getP());
-            
-            cont ++;
-            
+            S = perturb(H.clone(), pertube);
+
+            cont++;
+            printQuality(quality(Best), cont);
+
         } while (cont < interaction);
        
         return Best;
@@ -67,9 +71,9 @@ public abstract class ILS extends Generic{
         for (int i = 0; i < vetor.length; i++) {
             if (p >= Math.random()) {
                 do {
-                    n = random();
+                    n = random(range);
 
-                } while ((vetor[i] + n < tweak.getMinRange()) || (vetor[i] + n > tweak.getMaxRange()));
+                } while ((vetor[i] + n < getMinValueArray()) || (vetor[i] + n > getMaxValueArray()));
                 vetor[i] = vetor[i] + n;
             }
 

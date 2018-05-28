@@ -44,6 +44,7 @@ public class Main {
        Scanner in = new Scanner(System.in);
        Tweak tweak;
        int interaction = 100000;
+       boolean printQuality = true;
        int algoritimo;
        System.out.println("Escolha o algoritimo:");
        System.out.println("1 - Hill-Climbing        [Sphere]");
@@ -53,11 +54,7 @@ public class Main {
        System.out.println("5 - Hill-Climbing        [Schwefel]");
        System.out.println("6 - Simulated Annealing  [Schwefel]");
        System.out.println("7 - Tabu                 [Schwefel]");
-       System.out.println("8 - ILS                  [Schwefel]");
-       System.out.println("5 - Hill-Climbing        [Schwefel]");
-       System.out.println("6 - Simulated Annealing  [Schwefel]");
-       System.out.println("7 - Tabu                 [Schwefel]");
-       System.out.println("8 - ILS                  [Schwefel]");
+       System.out.println("8 - ILS                  [Schwefel]");;
        System.out.println("9 - Hill-Climbing        [Rosenbrock]");
        System.out.println("10 - Simulated Annealing [Rosenbrock]");
        System.out.println("11 - Tabu                [Rosenbrock]");
@@ -70,83 +67,99 @@ public class Main {
        
         switch (algoritimo) {
             case 1:
-                tweak = new Tweak(0.01, -1, 1);
+                tweak = new Tweak(0.01,  1);
                 SphereHillClimbing alg1 = new SphereHillClimbing(100, -100, 100, tweak);
+                alg1.setPrintQuality(printQuality);
                 alg1.exe(interaction);
                 break;
             case 2:
-                tweak = new Tweak(0.01, -1, 1);
-                SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100, -100, 100, tweak, 100);
+                tweak = new Tweak(0.01,  1);
+                SphereSimulatedAnnealing alg2 = new SphereSimulatedAnnealing(100, -100, 100, tweak, 10000);
+                alg2.setPrintQuality(printQuality);
                 alg2.exe(interaction);
                 break;
             case 3:
-                tweak = new Tweak(0.01, -1, 1);
-                SphereTabu alg3 = new SphereTabu(100, -100, 100, tweak, 100, 30);
-                alg3.exe(interaction);
+                tweak = new Tweak(0.01, 1);
+                SphereTabu alg3 = new SphereTabu(100, -100, 100, tweak, 100, 5);
+                alg3.setPrintQuality(printQuality);
+                alg3.exe(interaction/5);
                 break;
             case 4:
-                tweak = new Tweak(0.01, -1, 1);
-                SphereILS alg4 = new SphereILS(100, -100, 100, tweak);
+                tweak = new Tweak(0.01,  1);
+                SphereILS alg4 = new SphereILS(100, -100, 100, tweak, 0.7, 0.01);
+                alg4.setPrintQuality(printQuality);
                 alg4.exe(interaction);
                 break;
             case 5:
-                tweak = new Tweak(0.1,  -5, 4);
+                tweak = new Tweak(0.1,  4);
                 SchwefelHillClimbing alg5 = new SchwefelHillClimbing(100, -100, 100, tweak);
+                alg5.setPrintQuality(printQuality);
                 alg5.exe(interaction);
                 break;
             case 6:
-                tweak = new Tweak(0.1,  -4, 4);
+                tweak = new Tweak(0.1,  4);
                 SchwefelSimulatedAnnealing alg6 = new SchwefelSimulatedAnnealing(100, -100, 100, tweak, 60);
+                alg6.setPrintQuality(printQuality);
                 alg6.exe(interaction);
                 break;
             case 7:
-                tweak = new Tweak(0.01,  -1, 1);
+                tweak = new Tweak(0.01,  1);
                 SchwefelTabu alg7 = new SchwefelTabu(100, -100, 100, tweak, 100, 30);
+                alg7.setPrintQuality(printQuality);
                 alg7.exe(interaction);
                 break;
             case 8:
-                tweak = new Tweak(0.01,  -1, 1);
-                SchwefelILS alg8 = new SchwefelILS(100, -100, 100, tweak);
+                tweak = new Tweak(0.01, 1);
+                SchwefelILS alg8 = new SchwefelILS(100, -100, 100, tweak, 0.7, 0.01);
+                alg8.setPrintQuality(printQuality);
                 alg8.exe(interaction);
                 break;
             case 9:
-                tweak = new Tweak(0.5,  0.1, 0.9);
+                tweak = new Tweak(0.01,  1);
                 RosenbrockHillClimbing alg9 = new RosenbrockHillClimbing(100, -100, 100, tweak);
+                alg9.setPrintQuality(printQuality);
                 alg9.exe(interaction);
                 break;
             case 10:
-                tweak = new Tweak(0.01,  -0.5, 0.5);
+                tweak = new Tweak(0.03,  1);
                 RosenbrockSimulatedAnnealing alg10 = new RosenbrockSimulatedAnnealing(100, -100, 100, tweak, 100);
+                alg10.setPrintQuality(printQuality);
                 alg10.exe(interaction);
                 break;
             case 11:
-                tweak = new Tweak(0.01,  -1, 1);
+                tweak = new Tweak(0.01, 1);
                 RosenbrockTabu alg11 = new RosenbrockTabu(100, -100, 100, tweak, 100, 30);
+                alg11.setPrintQuality(printQuality);
                 alg11.exe(interaction);
                 break;
             case 12:
-                tweak = new Tweak(0.01,  -1, 1);
-                RosenbrockILS alg12 = new RosenbrockILS(100, -100, 100, tweak);
+                tweak = new Tweak(0.01, 1);
+                RosenbrockILS alg12 = new RosenbrockILS(100, -100, 100, tweak, 0.7, 0.01);
+                alg12.setPrintQuality(printQuality);
                 alg12.exe(interaction);
                 break;
             case 13:
-                tweak = new Tweak(0.01, -1, 1);
+                tweak = new Tweak(0.01, 1);
                 RastriginHillClimbing alg13 = new RastriginHillClimbing(100, -100, 100, tweak);
+                alg13.setPrintQuality(printQuality);
                 alg13.exe(interaction);
                 break;
             case 14:
-                tweak = new Tweak(0.01, -1, 1);
+                tweak = new Tweak(0.015, 1);
                 RastriginSimulatedAnnealing alg14 = new RastriginSimulatedAnnealing(100, -100, 100, tweak, 100);
+                alg14.setPrintQuality(printQuality);
                 alg14.exe(interaction);
                 break;
             case 15:
-                tweak = new Tweak(0.01, -1, 1);
-                RastriginTabu alg15 = new RastriginTabu(100, -100, 100, tweak, 100, 30);
-                alg15.exe(interaction);
+                tweak = new Tweak(0.015,  1);
+                RastriginTabu alg15 = new RastriginTabu(100, -100, 100, tweak, 50, 5);
+                alg15.setPrintQuality(printQuality);
+                alg15.exe(interaction/50);
                 break;
             case 16:
-                tweak = new Tweak(0.01, -1, 1);
-                RastriginILS alg16 = new RastriginILS(100, -100, 100, tweak);
+                tweak = new Tweak(0.015,  1);
+                RastriginILS alg16 = new RastriginILS(100, -100, 100, tweak, 0.7, 0.01);
+                alg16.setPrintQuality(printQuality);
                 alg16.exe(interaction);
                 break;
         }

@@ -15,10 +15,8 @@ public class Teste {
     
     public static void main(String[] args) {
         Random r = new Random();
-        
-        for (int i = 0; i < 100; i++) {
-           System.out.println(Math.random()); 
-        }
+        double a = Math.E;
+           System.out.println(a); 
     }
     
 }

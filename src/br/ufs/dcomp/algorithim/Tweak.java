@@ -14,13 +14,11 @@ package br.ufs.dcomp.algorithim;
 public class Tweak {    
     
     private double p;
-    private double minRange;
-    private double maxRange;
+    private double r;
 
-    public Tweak(double p, double minRange, double maxRange) {
+    public Tweak(double p, double rValue) {
         this.p = p;
-        this.minRange = minRange;
-        this.maxRange = maxRange;
+        this.r = rValue;
     }
 
     public double getP() {
@@ -31,21 +29,14 @@ public class Tweak {
         this.p = p;
     }
 
-    public double getMinRange() {
-        return minRange;
+    public double getR() {
+        return r;
     }
 
-    public void setMinRange(int minRange) {
-        this.minRange = minRange;
+    public void setR(double r) {
+        this.r = r;
     }
 
-    public double getMaxRange() {
-        return maxRange;
-    }
-
-    public void setMaxRange(double maxRange) {
-        this.maxRange = maxRange;
-    }
     
     
 }

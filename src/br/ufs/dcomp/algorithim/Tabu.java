@@ -13,14 +13,14 @@ package br.ufs.dcomp.algorithim;
  */
 public abstract class Tabu extends Generic{
 
-    private int l;                        //Comprimento máximo da lista tabu desejado
+    private int listLength;               //Comprimento máximo da lista tabu desejado
     private int n;                        //número de ajustes desejados para amostrar o gradiente
     private int controlLengthTabuList;   //controle das posições da lista tabu
 
     //Constutor da classe
     public Tabu(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, int tabuListLength, int nTweaks) {
         super(lengthVector, minValueArray, maxValueArray, tweak);
-        this.l = tabuListLength;
+        this.listLength = tabuListLength;
         this.n = nTweaks;
         this.controlLengthTabuList = 0;
     }
@@ -32,14 +32,14 @@ public abstract class Tabu extends Generic{
         double[] Best = S;           //Melhor solução
         double[] R;
         double[] W;
-        double[][] L = new double[l][1]; //uma lista tabu de tamanho máximo l
+        double[][] L = new double[listLength][1]; //uma lista tabu de tamanho máximo listLength
         
         //Enfileirar S em L
         push(S, L);
         
         do {
             
-            if (this.controlLengthTabuList + 1 > l) {
+            if (this.controlLengthTabuList + 1 > listLength) {
                 pull(L);
             }
             R = tweak(S.clone());
@@ -59,7 +59,7 @@ public abstract class Tabu extends Generic{
                 Best = S;
             }
             cont ++;
-            System.out.println("Qualy: " + quality(Best) + " Count: " + cont);
+            printQuality(quality(Best), cont);
         } while (cont < interaction || quality(Best) == 0);
 
        // System.out.println(Arrays.toString(L[L.length-1]));
@@ -68,7 +68,12 @@ public abstract class Tabu extends Generic{
     }
 
     //Enfileira o vetor S no vetor L
-    private void push(double[] vectorS, double[][] vectorL){
+    private void push(double[] vectorS, double[][] vectorL){     
+//        double[] v = vectorS.clone();
+//        for (int i = 0; i < v.length; i++) {
+//            v[i] = (int) v[i];
+//        }       
+//        System.out.println("aqui: " + controlLengthTabuList);
         vectorL[incrementLengthQueue()] = vectorS;
     }
     

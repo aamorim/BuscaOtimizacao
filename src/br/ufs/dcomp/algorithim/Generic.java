@@ -22,6 +22,7 @@ public abstract class Generic {
     private int minValueArray; // valor minimo a ser preenchido no array 
     private int maxValueArray; // valor maximo a ser preenchido no vetor
     private Tweak tweak;       // parametros do Tweak
+    private boolean printQuality;
     
     
     public Generic(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak) {
@@ -29,6 +30,7 @@ public abstract class Generic {
         this.minValueArray = minValueArray;
         this.maxValueArray = maxValueArray;
         this.tweak = tweak;
+        this.printQuality = false;
     }
    
     //Inicio da solução com valores aleatorios
@@ -60,16 +62,16 @@ public abstract class Generic {
     * Gera valores aleatorios baseado em valores minimos e máximos
     * definidos nos parametros
     * @minValue valor mínimo
-    * @maxValue valor máximo
+    * @rValue valor máximo
     */
-    public double random(double minValue, double maxValue) {
+    public double random(double rValue) {
         double aleatorio = 0;
         double inicial = Math.random(); // Gera valores aleatorios entre 0 e 1
         
-        if (inicial < 0.5 && minValue < 0) {
-            aleatorio = Math.random() * maxValue * -1;
+        if (inicial < 0.5) {
+            aleatorio = Math.random() * rValue * -1;
         } else {
-            aleatorio = Math.random() * maxValue * 1;
+            aleatorio = Math.random() * rValue * 1;
         }
         return aleatorio;
     }
@@ -87,10 +89,16 @@ public abstract class Generic {
         for (int i = 0; i < vector.length; i++) {
             if (tweak.getP() >= Math.random()) {
                 do {
-                    n = random(tweak.getMinRange(),tweak.getMaxRange());
+                    n = random(tweak.getR());
                 } while (((vector[i] + n) < this.minValueArray) || ((vector[i] + n) > this.maxValueArray));
                 
-                vector[i] = (vector[i] + n);                     
+                double soma = (vector[i] + n);
+                
+                //trunc entre os valores do vetor
+                if(soma <= this.maxValueArray || soma >= this.minValueArray){
+                    vector[i] = soma;
+                }
+                                 
             }
 
         }
@@ -106,7 +114,37 @@ public abstract class Generic {
         return x>=y?x:y;
     }
     
+    public void printQuality(double quality, int cont){
+        if(isPrintQuality()){
+           // System.out.println("Quality: " + quality + " Count: " + cont);
+             System.out.println(quality);
+        } 
+    }
+    
+    public void writeFile(){
+        
+    }
+
+    public boolean isPrintQuality() {
+        return printQuality;
+    }
+
+    public void setPrintQuality(boolean printQuality) {
+        this.printQuality = printQuality;
+    }
+
+    public int getMinValueArray() {
+        return minValueArray;
+    }
+
+    public int getMaxValueArray() {
+        return maxValueArray;
+    } 
+    
+        
     public abstract double quality(double[] s);
     
     public abstract double[] exe(int interaction);
+    
+    
 }
