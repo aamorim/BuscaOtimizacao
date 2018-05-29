@@ -37,8 +37,8 @@ public class MainFile {
     public static void main(String[] args) throws IOException {      
         
         //hillClimbingWriteFile();
-        simulatedAnnealingWriteFile();
-       // TabuWriteFile();
+       // simulatedAnnealingWriteFile();
+        TabuWriteFile();
         
     }
     

@@ -5,6 +5,7 @@
  */
 package br.ufs.dcomp.main;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -14,9 +15,15 @@ import java.util.Random;
 public class Teste {
     
     public static void main(String[] args) {
-        Random r = new Random();
-        double a = Math.exp(0.0000003193321426);
-           System.out.println(a); 
+        
+        double a[] = {0.1,0.2};
+        double b[] = {0.3,0.2};
+ 
+        if(Arrays.equals(a,b)){
+            System.out.println("Igual");
+        }else{
+            System.out.println("diferente");
+        }
     }
     
 }

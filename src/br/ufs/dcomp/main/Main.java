@@ -80,9 +80,9 @@ public class Main {
                 break;
             case 3:
                 tweak = new Tweak(0.01, 1);
-                SphereTabu alg3 = new SphereTabu(100, -100, 100, tweak, 100, 5);
+                SphereTabu alg3 = new SphereTabu(100, -100, 100, tweak, 100, 10);
                 alg3.setPrintQuality(printQuality);
-                alg3.exe(interaction/5);
+                alg3.exe(interaction/10);
                 break;
             case 4:
                 tweak = new Tweak(0.01,  1);

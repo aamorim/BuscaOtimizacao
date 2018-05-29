@@ -6,6 +6,8 @@
 
 package br.ufs.dcomp.algorithim;
 
+import java.util.Arrays;
+
 /**
  * @version 1.0
  * @author Alex de Santana Amorim <alex.santana.amorim@gmail.com>
@@ -69,12 +71,8 @@ public abstract class Tabu extends Generic{
 
     //Enfileira o vetor S no vetor L
     private void push(double[] vectorS, double[][] vectorL){     
-//        double[] v = vectorS.clone();
-//        for (int i = 0; i < v.length; i++) {
-//            v[i] = (int) v[i];
-//        }       
-//        System.out.println("aqui: " + controlLengthTabuList);
-        vectorL[incrementLengthQueue()] = vectorS;
+        vectorL[incrementLengthQueue()] = convert(vectorS);
+        //vectorL[incrementLengthQueue()] = vectorS;
     }
     
     //Remover o objeto mais antigo da fila
@@ -86,17 +84,23 @@ public abstract class Tabu extends Generic{
         decreasetLengthQueue();
     }
     
+    
+    //Convereter valores em inteiros
+    private double[] convert(double[] vector) {
+        double[] v = vector.clone();
+        for (int i = 0; i < v.length; i++) {
+            v[i] = (int) v[i];
+        }        
+        return v;
+    }
+    
    //Verifica se o vetor pertence ao vetor solução
     private boolean belongsTo(double[] vectorS, double[][] vectorL){        
-        boolean belongsTo  = true;
-        for (int i = 0; i < vectorL.length; i++) {
-            double[] tmp = vectorL[i];
-            belongsTo  = true;
-            for (int j = 0; j < tmp.length; j++) {
-                if(tmp[j] != vectorS[j]){
-                    belongsTo = false;
-                    break;
-                }                
+        boolean belongsTo  = false;
+        vectorS = convert(vectorS);
+        for (double[] vectorL1 : vectorL) {
+            if (Arrays.equals(vectorS, vectorL1)) {
+                return true;
             }
         }
         return belongsTo;
