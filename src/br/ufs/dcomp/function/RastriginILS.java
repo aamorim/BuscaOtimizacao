@@ -17,8 +17,8 @@ import br.ufs.dcomp.algorithim.Tweak;
  */
 public class RastriginILS extends ILS{
 
-    public RastriginILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak,double pertube, double range) {
-        super(lengthVector, minValueArray, maxValueArray, tweak, pertube, range);
+    public RastriginILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak,double pertube, double range, int time) {
+        super(lengthVector, minValueArray, maxValueArray, tweak, pertube, range ,time);
     }
 
     @Override

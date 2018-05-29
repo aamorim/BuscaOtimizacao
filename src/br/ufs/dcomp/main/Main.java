@@ -86,7 +86,7 @@ public class Main {
                 break;
             case 4:
                 tweak = new Tweak(0.01,  1);
-                SphereILS alg4 = new SphereILS(100, -100, 100, tweak, 0.7, 0.01);
+                SphereILS alg4 = new SphereILS(100, -100, 100, tweak, 0.7, 0.01, 10);
                 alg4.setPrintQuality(printQuality);
                 alg4.exe(interaction);
                 break;
@@ -110,7 +110,7 @@ public class Main {
                 break;
             case 8:
                 tweak = new Tweak(0.01, 1);
-                SchwefelILS alg8 = new SchwefelILS(100, -100, 100, tweak, 0.7, 0.01);
+                SchwefelILS alg8 = new SchwefelILS(100, -100, 100, tweak, 0.7, 0.01, 10);
                 alg8.setPrintQuality(printQuality);
                 alg8.exe(interaction);
                 break;
@@ -134,7 +134,7 @@ public class Main {
                 break;
             case 12:
                 tweak = new Tweak(0.01, 1);
-                RosenbrockILS alg12 = new RosenbrockILS(100, -100, 100, tweak, 0.7, 0.01);
+                RosenbrockILS alg12 = new RosenbrockILS(100, -100, 100, tweak, 0.7, 0.01, 10);
                 alg12.setPrintQuality(printQuality);
                 alg12.exe(interaction);
                 break;
@@ -158,7 +158,7 @@ public class Main {
                 break;
             case 16:
                 tweak = new Tweak(0.015,  1);
-                RastriginILS alg16 = new RastriginILS(100, -100, 100, tweak, 0.7, 0.01);
+                RastriginILS alg16 = new RastriginILS(100, -100, 100, tweak, 0.7, 0.01, 10);
                 alg16.setPrintQuality(printQuality);
                 alg16.exe(interaction);
                 break;

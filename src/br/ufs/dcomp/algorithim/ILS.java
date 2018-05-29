@@ -13,17 +13,19 @@ package br.ufs.dcomp.algorithim;
  */
 public abstract class ILS extends Generic{
 
-    private int n;
+
     private Tweak tweak;
     private double pertube;
     private double range;
+    private int time;
     
     
-    public ILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, double pertube, double range) {
+    public ILS(int lengthVector, int minValueArray, int maxValueArray, Tweak tweak, double pertube, double range, int time) {
         super(lengthVector, minValueArray, maxValueArray, tweak);
         this.tweak = tweak;
         this.pertube = pertube;
         this.range = range;
+        this.time = time;
     }
 
   
@@ -37,7 +39,7 @@ public abstract class ILS extends Generic{
         double[] R;
             
         do {
-            int times = (int) (Math.random() * S.length); //tempo aleatório no futuro próximo, escolhido de T
+            //int times = (int) (Math.random() * S.length); //tempo aleatório no futuro próximo, escolhido de T
 
             do {
                 R = tweak(S.clone());
@@ -45,7 +47,7 @@ public abstract class ILS extends Generic{
                     S = R;
                 }
                 contTime++;
-            } while (contTime < times);
+            } while (contTime < this.time);
 
             contTime = 0;
 
